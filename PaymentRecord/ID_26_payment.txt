@@ -1,0 +1,15 @@
+Transaction ID:   26
+Customer Name: admin admin         
+Email:admin@email.usa                                   
+Order ID: 164
+Total Food Cost:$25.90
+Tax:$0.07
+Shipping Free:$8.00
+Discount:$0.00
+Total Payment:$35.71
+Type:  Credit
+Code: XXX-XX
+Mode:    Offline
+Status:     Processing
+Date:     2020-11-30
+Customer Address:  1087 Maneland Ave W St. Paul
