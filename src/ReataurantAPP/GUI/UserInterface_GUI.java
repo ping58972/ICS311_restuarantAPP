@@ -113,8 +113,8 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         createMasterPanelConpornents();
-        currentUserName = "";
-        setLoginUserName(currentUserName);
+
+        setLoginUserName("");
         
         //------- Create main content panels
 
@@ -274,7 +274,6 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
         switch(state)
         {
             case MODE_ANONYMOUS:
-            	//System.out.println("MODE_ANONYMOUS");
                 headBtnLogout.setEnabled(false);
                 headBtnLogout.setVisible(false);
                 mainBtnShowMenu.setEnabled(false);
@@ -293,7 +292,6 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
                 mainBtnShowTransaction.setVisible(false);
                 break;
             case MODE_EMPLOYEE:
-            	//System.out.println("MODE_EMPLOYEE");
                 headBtnLogout.setEnabled(true);
                 headBtnLogout.setVisible(true);
                 mainBtnShowMenu.setEnabled(true);
@@ -312,7 +310,6 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
                 mainBtnShowTransaction.setVisible(true);
                 break;
            case MODE_MANAGER:
-        	   //System.out.println("MODE_MANAGER");
                headBtnLogout.setEnabled(true);
                headBtnLogout.setVisible(true);
                mainBtnShowMenu.setEnabled(true);
@@ -331,7 +328,6 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
                 mainBtnShowTransaction.setVisible(true);
                 break;
            case MODE_CUSTOMER:
-        	   //System.out.println("MODE_CUSTOMER");
                headBtnLogout.setEnabled(true);
                headBtnLogout.setVisible(true);
                mainBtnShowMenu.setEnabled(true);
@@ -471,7 +467,7 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
             {
               //  rcController.userLogout();
                 headBtnLogout.setEnabled(false);
-                
+                setLoginUserName("");
                 changeMainPanel("Login");
 
                 changeMode(MODE_ANONYMOUS);
@@ -519,7 +515,7 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
             email.setForeground(Color.WHITE);
             email.setPreferredSize(new Dimension(100, 30));
             gbc.gridx = 0;
-            gbc.gridy = 3;
+            gbc.gridy = 0;
             gbLayout.setConstraints(email, gbc);
             loginPanel.add(email);
             loginPanel.add(email);
@@ -527,7 +523,7 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
             emailF = new JTextField(20);
 
             gbc.gridx = 1;
-            gbc.gridy = 3;
+            gbc.gridy = 0;
             gbLayout.setConstraints(emailF, gbc);
             loginPanel.add(emailF);
             
@@ -535,35 +531,47 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
             pwd.setForeground(Color.WHITE);
             pwd.setPreferredSize(new Dimension(100, 30));
             gbc.gridx = 0;
-            gbc.gridy = 4;
+            gbc.gridy = 1;
             gbLayout.setConstraints(pwd, gbc);
             loginPanel.add(pwd);
             
             pwdF = new JPasswordField(20);
             gbc.gridx = 1;
-            gbc.gridy = 4;
+            gbc.gridy = 1;
             gbLayout.setConstraints(pwdF, gbc);
             loginPanel.add(pwdF);
             
 
+        
+            btnLoginOK = new JButton("Login");
+            btnLoginOK.setBackground(Color.WHITE);
+
+            btnLoginOK.addActionListener(this);
+            gbc.gridx = 1;
+            gbc.gridy = 2;
+            gbc.gridwidth = 1;
+            gbLayout.setConstraints(btnLoginOK, gbc);
+            loginPanel.add(btnLoginOK);
+            loginPanel.setBackground(Color.DARK_GRAY);
+            
+//            loginPanel.getRootPane().setDefaultButton(btnLoginOK);
+//            btnLoginOK.setMnemonic(KeyEvent.VK_A);
+//            btnLoginOK.addActionListener(new ActionListener() {
+//               public void actionPerformed(ActionEvent ae) {
+//                  System.out.println("Button pressed!");
+//                  btnLoginOK.setEnabled(!btnLoginOK.isEnabled());
+//               }
+//            });
+            
+
             btnRegister = new JButton("Register");
             gbc.gridx = 2;
-            gbc.gridy = 5;
+            gbc.gridy = 2;
             gbc.gridwidth = 2;
             gbLayout.setConstraints(btnRegister, gbc);
             loginPanel.add(btnRegister);
             btnRegister.setBackground(Color.WHITE);
             btnRegister.addActionListener(this);
-        
-            btnLoginOK = new JButton("Login");
-            btnLoginOK.setBackground(Color.WHITE);
-            btnLoginOK.addActionListener(this);
-            gbc.gridx = 0;
-            gbc.gridy = 5;
-            gbc.gridwidth = 2;
-            gbLayout.setConstraints(btnLoginOK, gbc);
-            loginPanel.add(btnLoginOK);
-            loginPanel.setBackground(Color.DARK_GRAY);
             
             add(loginPanel, BorderLayout.CENTER);
           
@@ -612,8 +620,6 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
                 
                 
                if( db.loginCheck(inputID, inputPassword)) 
-             //   if(db.loginCheck("admin@email.usa", "admin"))
-             //   	if(db.loginCheck("Faith.Alsop@email.usa", "123456"))
                 {
                 	if(db.getUser().getUser_role().equals("admin")) {
                         showConfirmDialog("Message", "Login success!!");

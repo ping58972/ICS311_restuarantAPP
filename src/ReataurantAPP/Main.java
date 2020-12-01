@@ -3,6 +3,8 @@
  */
 package ReataurantAPP;
 
+import java.awt.EventQueue;
+
 import ReataurantAPP.GUI.Controller_GUI;
 
 /**
@@ -12,8 +14,13 @@ import ReataurantAPP.GUI.Controller_GUI;
 public class Main {
 
 	public static void main(String[] args) {
-		  new Controller_GUI();
-
+		  
+		  EventQueue.invokeLater(new Runnable() {
+	            @Override
+	            public void run() {
+	            	new Controller_GUI();
+	            }
+	        });
 	}
 
 }
