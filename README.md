@@ -20,7 +20,7 @@ User: root
 
 Password: root
 
-Then run the my attached "ProjectHandoutStep3_NalongsoneDanddank.sql" script inside the new connection to create the database that my app will connect to.
+Then run the my attached "ProjectHandoutStep3_NalongsoneDanddank.sql" script inside folder "database_script" for the new connection to create the database that my app will connect to.
 
 # For Non-IT person OR Non-Programmer:
 
@@ -143,6 +143,7 @@ Click on register button.
 
 #Screenshots:
 
+![alt text](https://github.com/ping58972/ICS311_restuarantAPP/blob/master/database_script/ERDiagram.PNG)
 ![alt text](https://github.com/ping58972/ICS311_restuarantAPP/blob/master/screenshots_images/1.PNG)
 ![alt text](https://github.com/ping58972/ICS311_restuarantAPP/blob/master/screenshots_images/2.PNG)
 ![alt text](https://github.com/ping58972/ICS311_restuarantAPP/blob/master/screenshots_images/3.PNG)
