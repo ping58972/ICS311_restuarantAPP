@@ -11,7 +11,7 @@ import java.util.*;
 import java.io.*;
 import java.lang.*;
 
-import ReataurantAPP.GUI.MenuItem;
+
 import ReataurantAPP.database.dao.Item;
 import ReataurantAPP.database.dao.ItemDao;
 import ReataurantAPP.database.dao.Transaction;
