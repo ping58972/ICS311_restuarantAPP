@@ -12,11 +12,7 @@ import ReataurantAPP.GUI.Controller_GUI;
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		  new Controller_GUI();
-		//
-		
-		//  new Test_DB();
 
 	}
 

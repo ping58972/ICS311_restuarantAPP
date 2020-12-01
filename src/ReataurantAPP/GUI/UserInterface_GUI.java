@@ -21,7 +21,6 @@ import javax.swing.event.*;
 
 import ReataurantAPP.database.Database;
 import ReataurantAPP.database.DatabaseException;
-import ReataurantAPP.database.Staff;
 import ReataurantAPP.database.dao.Item;
 import ReataurantAPP.database.dao.ItemDao;
 import ReataurantAPP.database.dao.Order;
@@ -94,8 +93,12 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
     private final static int WINDOW_X = 100;
     private final static int WINDOW_Y = 100;
     private final static int WINDOW_WIDTH = 900;
-    private final static int WINDOW_HEIGHT = 600;
-    /**
+    private final static int WINDOW_HEIGHT = 600;    
+    
+   
+
+
+	/**
      * Constructor for objects of class UserInterface_GUI
      */
     public UserInterface_GUI(Controller_GUI rController) {
@@ -116,7 +119,8 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
         //------- Create main content panels
 
         cLoginPanel = new LoginPanel();
-        mainPanel.add("Login", cLoginPanel);
+        mainPanel.add("Login", cLoginPanel);      
+       
         cRegisterPanel = new RegisterPanel();
         mainPanel.add("Register", cRegisterPanel); 
         cMenuListPanel = new MenuListPanel();
@@ -144,6 +148,7 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
         
         changeMode(MODE_ANONYMOUS);
     }
+    
     
     private void createMasterPanelConpornents()
     {
@@ -255,7 +260,7 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
          }
          else
          {
-            labelLoginUserName.setText("<html>Login user<br>" + newName + "</html>");
+            labelLoginUserName.setText("<html>Login By: <br>" + newName + "</html>");
         }
     }
 
@@ -346,19 +351,8 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
                break;
         }
     }
-    
-    public void setTodaysDate(String today)
-    {
-        ////
-    }
-    
-//    void setClockOutButton()
-//    {
-//    	/
-//            btnCheckout.setEnabled(true);
-//        else
-//            btnCheckout.setEnabled(false);
-//    }
+      
+
     //--------------------------------------------------------
     // Display message on an information panel
     //--------------------------------------------------------
@@ -465,22 +459,17 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
             changeMainPanel("MenuManagement");
             cMenuManagementPanel.init();
         }
-//        else if (ae.getSource() == mainBtnOrder)
-//        {
-//            changeMainPanel("TansactionPanel");
-//            cTransactionPanel.init();
-//        }
+
         else if (ae.getSource() == mainBtnShowTransaction)
         {
           changeMainPanel("TansactionPanel");
           cTransactionPanel.init();
-//            changeMainPanel("TransactionDetailPanel");
-//            cTransactionDetailPanel.init();
+
         }
         else if (ae.getSource() == headBtnLogout) {
             if( showYesNoDialog("Logout","Are you sure to logout?") == DIALOG_YES)
             {
-                rcController.userLogout();
+              //  rcController.userLogout();
                 headBtnLogout.setEnabled(false);
                 
                 changeMainPanel("Login");
@@ -488,13 +477,7 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
                 changeMode(MODE_ANONYMOUS);
             }
         }
-//        else if (ae.getSource() == btnCheckout){
-//            if( showYesNoDialog("Clock out","Are you sure to clock out?") == DIALOG_YES)
-//            {
-//                rcController.clockOut();
-//                setClockOutButton();
-//            }
-//        }
+
     }
   
     
@@ -507,26 +490,30 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
     /****************************************************************
      * Login panel
     *****************************************************************/
-    private class LoginPanel extends JPanel implements ActionListener
+    public class LoginPanel extends JPanel implements ActionListener
     {
         // components for login panel
-        //private JPanel         loginPanel;
-    	//private JLabel			wellComeTitle;
+        private JPanel         loginPanel;
+
         private JLabel          email;
         private JTextField      emailF;
         private JLabel          pwd;
         private JPasswordField  pwdF;
+        
+
         // private JCheckBox       chbIsManager;
         private JButton         btnLoginOK;
         private JButton        btnRegister;
+
         
         public LoginPanel()
         {
-            //loginPanel = new JPanel();
+        	this.setLayout( new BorderLayout());
+            loginPanel = new JPanel();
             GridBagLayout gbLayout = new GridBagLayout();
-            this.setLayout( gbLayout);
+            loginPanel.setLayout( gbLayout);
             GridBagConstraints gbc = new GridBagConstraints();
-
+            
             
             email = new JLabel("Email: ");
             email.setForeground(Color.WHITE);
@@ -534,14 +521,15 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
             gbc.gridx = 0;
             gbc.gridy = 3;
             gbLayout.setConstraints(email, gbc);
-            this.add(email);
+            loginPanel.add(email);
+            loginPanel.add(email);
             
             emailF = new JTextField(20);
-            //emailF.setInputVerifier(new IntegerInputVerifier(0));
+
             gbc.gridx = 1;
             gbc.gridy = 3;
             gbLayout.setConstraints(emailF, gbc);
-            this.add(emailF);
+            loginPanel.add(emailF);
             
             pwd = new JLabel("Password:");
             pwd.setForeground(Color.WHITE);
@@ -549,13 +537,13 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
             gbc.gridx = 0;
             gbc.gridy = 4;
             gbLayout.setConstraints(pwd, gbc);
-            this.add(pwd);
+            loginPanel.add(pwd);
             
             pwdF = new JPasswordField(20);
             gbc.gridx = 1;
             gbc.gridy = 4;
             gbLayout.setConstraints(pwdF, gbc);
-            this.add(pwdF);
+            loginPanel.add(pwdF);
             
 
             btnRegister = new JButton("Register");
@@ -563,7 +551,7 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
             gbc.gridy = 5;
             gbc.gridwidth = 2;
             gbLayout.setConstraints(btnRegister, gbc);
-            this.add(btnRegister);
+            loginPanel.add(btnRegister);
             btnRegister.setBackground(Color.WHITE);
             btnRegister.addActionListener(this);
         
@@ -574,24 +562,18 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
             gbc.gridy = 5;
             gbc.gridwidth = 2;
             gbLayout.setConstraints(btnLoginOK, gbc);
-            this.add(btnLoginOK);
-            this.setBackground(Color.DARK_GRAY);
+            loginPanel.add(btnLoginOK);
+            loginPanel.setBackground(Color.DARK_GRAY);
+            
+            add(loginPanel, BorderLayout.CENTER);
+          
         }
-        
-        private void setUserID(String id)
-        {
-            emailF.setText(id);
-        }
-        
-        private void setPassword(String password)
-        {
-            pwdF.setText(password);
-        }
+
         
         public void init()
         {
-            setUserID("");
-            setPassword("");
+        	emailF.setText("");
+        	pwdF.setText("");
             emailF.setBackground( UIManager.getColor( "TextField.background" ) ); 
         }
          
@@ -608,7 +590,6 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
                 }  
   
                 char[] password;
-                //boolean isManager = chbIsManager.isSelected(); 
                 
                 byte state = -1;
                 
@@ -634,7 +615,6 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
              //   if(db.loginCheck("admin@email.usa", "admin"))
              //   	if(db.loginCheck("Faith.Alsop@email.usa", "123456"))
                 {
-                	//System.out.println(db.getUser());
                 	if(db.getUser().getUser_role().equals("admin")) {
                         showConfirmDialog("Message", "Login success!!");
                         displayMessage("Wellcome, " + currentUserName);
@@ -643,7 +623,6 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
                         changeMainPanel("MenuList");
                         cMenuListPanel.init();
                         changeMode(MODE_MANAGER);
-                      //  btnCheckout.setEnabled(true);
                         setLoginUserName(db.getUser().getlName());
                 	}
                 	else if (db.getUser().getUser_role().toLowerCase().equals("customer")) {
@@ -654,7 +633,6 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
                         changeMainPanel("MenuList");
                         cMenuListPanel.init();
                         changeMode(MODE_CUSTOMER);
-                    //    btnCheckout.setEnabled(true);
                         setLoginUserName(db.getUser().getlName());
                 	}
                 	else if (db.getUser().getUser_role().toLowerCase().equals("chef") 
@@ -667,7 +645,6 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
                         changeMainPanel("MenuList");
                         cMenuListPanel.init();
                         changeMode(MODE_EMPLOYEE);
-                   //     btnCheckout.setEnabled(true);
                         setLoginUserName(db.getUser().getlName());
                 	}
 
@@ -683,7 +660,9 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
                 cRegisterPanel.init();
                 displayMessage("Enter your infos to register.");
             }
+
         }
+
     }
     
     /****************************************************************
@@ -851,7 +830,7 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
         }
         
 		public void init() {
-			// TODO Auto-generated method stub
+
 			
 		}
 
@@ -877,14 +856,12 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
 				 UserDao userDao = new UserDao();
 				 if(userDao.insert(user)) {
 
-			                rcController.userLogout();
+			               // rcController.userLogout();
 			                headBtnLogout.setEnabled(false);
-			                //btnRegister.setEnabled(true);
 			                
 			                changeMainPanel("Login");
 
 			                changeMode(MODE_ANONYMOUS);
-//			                setClockOutButton();
 			                displayErrorMessage("Register Success!");
 
 					 
@@ -893,9 +870,8 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
 				 }
 		            
 			 } else if  (e.getSource() == cancleBtn) {
-	                rcController.userLogout();
-	                headBtnLogout.setEnabled(false);
-	                //btnRegister.setEnabled(true);
+	             //   rcController.userLogout();
+	                headBtnLogout.setEnabled(false);;
 	                
 	                changeMainPanel("Login");
 
@@ -1101,8 +1077,7 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
  
             bDateF.setText(new SimpleDateFormat("MM-dd-yyyy").format(user.getBdate()));
             bDateF.setEditable(false); 
-            
-           // 
+
             roleD.setText("Role: " + db.getUser().getUser_role());
             
             pwdF.setText(user.getPwd());
@@ -1238,19 +1213,13 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
         public void init()
         {
             showMenuList("ALL");
-            //displayArea.setText(str);
-            //showAllMenuList(displayArea);
         }
         
 
         
         private void showMenuList(String menuType)
         {
-//            displayArea.setText("");
-//            ArrayList<String> menuList = rcController.createMenuList(menuType);
-//            for(int i = 0; i < menuList.size(); i++)
-//                displayArea.append(menuList.get(i) + "\n");
-        	
+      	
 
         	if(menuType.equals("ALL")) {
         	List<String> list = new ArrayList<String>();
@@ -1284,27 +1253,25 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
             if (ae.getSource() == btnAll)
             {
                 showMenuList("ALL");
-                //showAllMenuList(displayArea);
+
             }
             else if (ae.getSource() == btnMain)
             {
                 showMenuList("MAIN");
-                //showParticularMenuList(MenuItem.MAIN, displayArea);
+
             }
             else if (ae.getSource() == btnDrink)
             {
                 showMenuList("Drink");
-                //showParticularMenuList(MenuItem.DRINK, displayArea);
+
             }
             else if (ae.getSource() == btnAlcohol)
             {
                 showMenuList("Alcohol");
-                //showParticularMenuList(MenuItem.ALCOHOL, displayArea);
             }
             else if (ae.getSource() == btnDessert)
             {
                 showMenuList("Dessert");
-                //showParticularMenuList(MenuItem.DESSERT, displayArea);
             }
             else if (ae.getSource()== btnDetail) {
             	String itemLine = (String)displayList.getSelectedValue();
@@ -1319,10 +1286,7 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
         }
 
 		private void showDetail(int id) {
-			//Item item = db.getItemById(id);
-			
-			//System.out.println(item);
-			//JOptionPane.showMessageDialog(this, item.toString(), "Food Detail", JOptionPane.PLAIN_MESSAGE);
+
 			cDetailMenuItemPanel.init(id);
             changeMainPanel("DetailItem");
 		}
@@ -1684,7 +1648,7 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
             String orderLine = (String)displayList.getSelectedValue();
             if (orderLine == null)
                 return -1;
-            return getIDfromString( orderLine, 4);
+            return getIDfromString( orderLine, 6);
         }
         
         public void actionPerformed(ActionEvent ae) {
@@ -1703,7 +1667,6 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
             else if (ae.getSource() == btnDeleteMenuItem)
             {
                 int deleteMenuID = getSelectedMenuID();
-                if( deleteMenuID == -1)    return;
                 ItemDao itemDao = new ItemDao();
                 if(!itemDao.deleteById(deleteMenuID)) {
                 	showErrorDialog("Error", rcController.getErrorMessage());
@@ -1711,19 +1674,7 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
                 	displayMessage("Item Deleted.");
                 	init();
                 }
-//                
-//                if( showYesNoDialog("", "Are you sure to delete the menu item?") == DIALOG_YES)
-//                {
-//                    if(!rcController.deleteMenuItem(deleteMenuID))
-//                    {
-//                        showErrorDialog("Error", rcController.getErrorMessage());
-//                    }
-//                    else
-//                    {
-//                        displayMessage("Deleted.");
-//                        init();
-//                    }
-//                }
+
             }
         }
     }
@@ -2525,11 +2476,7 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
         	
             displayList.setListData(list.toArray());
             scrollPanel.getViewport().setView(displayList);
-            
-//            setTotalCount(rcController.getTodaysOrderCnt());
-//            setTotalSales(rcController.getTotalSales());
-//            setCancelCount(rcController.getTodaysCancelCnt());
-//            setCancelTotal(rcController.getCancelTotal());
+
             
         }
         
@@ -2708,17 +2655,14 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
         public OrderDetailPanel()
         {
             this.setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
-            //this.insets = new Insets(5, 5, 5, 5);
             
             orderDetailPanel = new JPanel();
-            //orderDetailPanel.setSize(new Dimension(270, 600));
             
             GridBagLayout gbLayout = new GridBagLayout();
             orderDetailPanel.setLayout( gbLayout);
             GridBagConstraints gbc = new GridBagConstraints();
             
             lbOrderId = new JLabel("ID: ");
-            //lbOrderId.setMaximumSize(new Dimension(350, 50));
             gbc.gridx = 0;
             gbc.gridy = 0;
             gbc.gridwidth = 4;
@@ -2735,38 +2679,22 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
             gbc.gridy = 0;
             gbc.gridwidth = 1;
             gbc.gridheight = 1;
-//            gbc.gridwidth = 4;
             gbLayout.setConstraints(btnCreateOrder, gbc);
             orderDetailPanel.add(btnCreateOrder);
             
             orderScrollPanel = new JScrollPane();
             gbc.gridx = 0;
-  //        gbc.weightx = 10.0;
             gbc.gridy = 1;
-//            gbc.ipadx = 5;
-//            gbc.ipady = 1;
-//            gbc.weighty = 1.0;
             gbc.gridwidth = 6;
             gbc.gridheight = 1;
-//            gbc.fill = GridBagConstraints.VERTICAL;
           orderScrollPanel.setPreferredSize(new Dimension(200, 300));
-//          //  gbc.weighty = 1.0;
             gbLayout.setConstraints(orderScrollPanel, gbc);
             orderDetailPanel.add(orderScrollPanel);
-            
-//            lblLeftInfo = new JLabel("No  Item name quantity    price");
-//            gbc.gridx = 0;
-//            gbc.gridy = 1;
-//            gbc.gridwidth = 4;
-//            gbLayout.setConstraints(lblLeftInfo, gbc);
-//            orderDetailPanel.add(lblLeftInfo);
             
             lblTotalSales = new JLabel("Total:      ");
             gbc.gridx = 0;
             gbc.gridy = 5;
             gbc.weighty = 0;
-           // gbc.gridwidth = 4;
-            //gbc.fill = GridBagConstraints.BOTH;
             gbLayout.setConstraints(lblTotalSales, gbc);
             orderDetailPanel.add(lblTotalSales);
             
@@ -2775,14 +2703,7 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
             gbc.gridy = 5;
             gbLayout.setConstraints(lblOrderState, gbc);
             orderDetailPanel.add(lblOrderState);
-            
-//            lblStaffName = new JLabel();
-//            gbc.gridx = 0;
-//            gbc.gridy = 5;
-//            gbc.gridwidth = 4;
-//            gbLayout.setConstraints(lblStaffName, gbc);
-//            orderDetailPanel.add(lblStaffName);
-            
+                        
             lblQuantity = new JLabel("Quantity");
             gbc.ipadx = 20;
             gbc.gridx = 0;
@@ -2840,8 +2761,6 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
             menuListPanel.add(lblRightTitle);
             
             menuScrollPanel = new JScrollPane();
-            //menuScrollPanel.setPreferredSize(new Dimension(270, 300));
-            //menuScrollPanel.setMaximumSize(new Dimension(Short.MAX_VALUE, Short.MAX_VALUE));
             gbc.gridy = 1;
             gbc.weighty = 1.0;
             
@@ -2892,9 +2811,6 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
             this.add(orderDetailPanel);
             this.add(menuListPanel);
             
-            
-            //menuListPanel.setMaximumSize(new Dimension(350, 600));
-            
             orderItemList   = new JList();
             orderItemList.setFont(new Font(Font.MONOSPACED,Font.PLAIN,10));
             orderItemList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -2913,16 +2829,13 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
             btnCheckout.setEnabled(false);
             lblQuantity.setEnabled(false);
             tfQuantity.setEnabled(false);
-            
-           //btnCreateOrder.setEnabled();
+
             
             refleshOrderDetailList();
-//            menuList.setListData(rcController.createMenuList(0).toArray());
-//            menuScrollPanel.getViewport().setView(menuList);
             showMenuList("ALL");
             tfQuantity.setText("1");
             tfQuantity.setBackground( UIManager.getColor( "TextField.background" ) );
-          //  setStaffName(staffName);
+
         }
         
         private void setTotal(double total)
@@ -3020,9 +2933,7 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
             try
             {
                 String strIndex = orderLine.substring(7, 10);
-               // System.out.println(strIndex);
                 String strQuant = orderLine.substring(20, 24);
-               // System.out.println(strQuant);
                 int id = Integer.parseInt(strIndex.trim());
                 double quant = Double.parseDouble(strQuant.trim());
                 LinkedHashMap lm = new LinkedHashMap();
@@ -3040,10 +2951,6 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
  
         private void showMenuList(String menuType)
         {
-//            displayArea.setText("");
-//            ArrayList<String> menuList = rcController.createMenuList(menuType);
-//            for(int i = 0; i < menuList.size(); i++)
-//                displayArea.append(menuList.get(i) + "\n");
         	ItemDao itemDao = new ItemDao();
 
         	if(menuType.equals("ALL")) {
@@ -3090,8 +2997,6 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
         	}
         	else if (ae.getSource() == btnAddItem)
             {
-
-                //Check whether current focuced compornent have to verify their value
                 if (btnAddItem.getVerifyInputWhenFocusTarget()) {
                     //Try to get focus
                     btnAddItem.requestFocusInWindow();
@@ -3101,12 +3006,10 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
                 }  
                 
                 String menuLine = (String)menuList.getSelectedValue();
-//                System.out.println(menuLine);
                 if (menuLine == null)
                     return;
 
                 int     itemId = getIDfromString( menuLine, 4);
-//                System.out.println(id);
                 if(itemId == -1)
                     return;
                 if( tfQuantity.getText().equals(""))
@@ -3163,7 +3066,6 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
             	if(tranId == -1)return;
             	
             	changeMainPanel("TransactionDetailPanel");
-            	//cOrderListPanel.showOrderByStatus("checkout");
             	cTransactionDetailPanel.init(tranId);
             }
              else if (ae.getSource() == btnAll)
@@ -3223,7 +3125,6 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
     {
         private JScrollPane     scrollPanel;
         private JList           displayList;
-     //   private JButton         btnPrint;
         private JButton         btnShowDetail;
         private JButton         btnDelete;
         private JPanel			 btnPanel;
@@ -3242,11 +3143,7 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
             scrollPanel = new JScrollPane(displayList);
             scrollPanel.setPreferredSize(new Dimension(200, 400));
             add(scrollPanel, BorderLayout.CENTER);
-            
-//            btnPrint    = new JButton("Print");
-//            btnPrint.addActionListener(this);
-//
-//            btnPanel.add(btnPrint);
+
             
             btnShowDetail    = new JButton("Show Detial");
             btnShowDetail.addActionListener(this);
@@ -3264,7 +3161,7 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
         private void showOrderList()
         {
         	TransactionDao tranDao = new TransactionDao();
-        	List<Transaction> trans; // = tranDao.selectAll();// userDao.selectByQuery("select * from user where user_role != 'customer';");
+        	List<Transaction> trans; 
         	List<String> list = new ArrayList<String>();
         	int userid = db.getUser().getId();
         	if( db.getUser().getUser_role().equalsIgnoreCase("admin")) {
@@ -3306,15 +3203,6 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
         public void actionPerformed(ActionEvent ae) {
         	int tranId = getSelectedOrderID();
         	
-//            if (ae.getSource() == btnPrint)
-//            {
-//            	
-//                String createFineName = rcController.generateSalesReport();
-//                if( createFineName == null)
-//                    displayErrorMessage(rcController.getErrorMessage());
-//                else
-//                    displayMessage("The file have been generated.");
-//            }
             if (ae.getSource() == btnShowDetail)
             {
             	changeMainPanel("TransactionDetailPanel");
@@ -3335,149 +3223,7 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
         }
     }
     
-    /****************************************************************
-     * Total sales panel
-    *****************************************************************/   
-
-    {
-    //    private class TansactionPanel extends JPanel implements ActionListener
-//    {
-//        private JScrollPane     scrollPanel;
-//        private JList           displayList;
-//        private JButton         btnPrint;
-//        private JButton         btnShowDetail;
-//        private JLabel          lblTotalSales;
-//        private JLabel          lblTotalCount;
-//        private JLabel          lblCancelTotal;
-//        private JLabel          lblCancelCount;
-//        
-//        
-//        public TansactionPanel()
-//        {
-//            GridBagLayout gbLayout = new GridBagLayout();
-//            this.setLayout( gbLayout);
-//            GridBagConstraints gbc = new GridBagConstraints();
-//
-//            scrollPanel = new JScrollPane();
-//            //scrollPanel.setPreferredSize(new Dimension(500, 300));
-//            gbc.gridx = 0;
-//            gbc.gridy = 0;
-//            gbc.gridwidth = 4;
-//            gbc.weightx = 1.0;
-//            gbc.weighty = 1.0;
-//            gbc.insets = new Insets(5, 5, 5, 5);
-//            gbc.fill = GridBagConstraints.BOTH;
-//            gbLayout.setConstraints(scrollPanel, gbc);
-//            this.add(scrollPanel);
-//            
-//            lblTotalCount = new JLabel();
-//            lblTotalCount.setFont(new Font(Font.MONOSPACED,Font.PLAIN,16));
-//            gbc.gridx = 0;
-//            gbc.gridy = 1;
-//            gbc.gridwidth = 2;
-//            gbc.weighty = 0;
-//            gbLayout.setConstraints(lblTotalCount, gbc);
-//            this.add(lblTotalCount);
-//            
-//            lblTotalSales = new JLabel();
-//            lblTotalSales.setFont(new Font(Font.MONOSPACED,Font.PLAIN,16));
-//            gbc.gridx = 2;
-//            gbc.gridy = 1;
-//            gbLayout.setConstraints(lblTotalSales, gbc);
-//            this.add(lblTotalSales);
-//            
-//            lblCancelCount = new JLabel();
-//            lblCancelCount.setFont(new Font(Font.MONOSPACED,Font.PLAIN,16));
-//            gbc.gridx = 0;
-//            gbc.gridy = 2;
-//            gbLayout.setConstraints(lblCancelCount, gbc);
-//            this.add(lblCancelCount);
-//            
-//            lblCancelTotal = new JLabel();
-//            lblCancelTotal.setFont(new Font(Font.MONOSPACED,Font.PLAIN,16));
-//            gbc.gridx = 2;
-//            gbc.gridy = 2;
-//            gbLayout.setConstraints(lblCancelTotal, gbc);
-//            this.add(lblCancelTotal);
-//            
-//            btnPrint    = new JButton("Generate text file");
-//            btnPrint.addActionListener(this);
-//            gbc.gridx = 0;
-//            gbc.gridy = 3;
-//            gbc.gridwidth = 2;
-//            gbLayout.setConstraints(btnPrint, gbc);
-//            this.add(btnPrint);
-//            
-//            btnShowDetail    = new JButton("Close all orderOld");
-//            btnShowDetail.addActionListener(this);
-//            gbc.gridx = 2;
-//            gbc.gridy = 3;
-//            gbLayout.setConstraints(btnShowDetail, gbc);
-//            this.add(btnShowDetail);
-//            
-//            displayList = new JList();
-//        }
-//        
-//        private void setTotalCount( int count)
-//        {
-//            lblTotalCount.setText("Today's orderOld: " + count);
-//        }
-//        
-//        private void setTotalSales( double sales)
-//        {
-//            lblTotalSales.setText("Total:$ " + sales);
-//        }
-//        
-//        private void setCancelCount( int count)
-//        {
-//            lblCancelCount.setText("Canceled orders: " + count);
-//        }
-//        
-//        private void setCancelTotal( double sales)
-//        {
-//            lblCancelTotal.setText("Cancel total:$ " + sales);
-//        }
-//        
-//        private void showOrderList()
-//        {
-//            displayList.setListData(rcController.createOrderList().toArray());
-//            scrollPanel.getViewport().setView(displayList);
-//            
-//            setTotalCount(rcController.getTodaysOrderCnt());
-//            setTotalSales(rcController.getTotalSales());
-//            setCancelCount(rcController.getTodaysCancelCnt());
-//            setCancelTotal(rcController.getCancelTotal());
-//        }
-//        
-//        public void init()
-//        {
-//            showOrderList();
-//        }
-//        
-//        public void actionPerformed(ActionEvent ae) {
-//            if (ae.getSource() == btnPrint)
-//            {
-//                String createFineName = rcController.generateSalesReport();
-//                if( createFineName == null)
-//                    displayErrorMessage(rcController.getErrorMessage());
-//                else
-//                    displayMessage(createFineName + " have been generated.");
-//            }
-//            else if (ae.getSource() == btnShowDetail)
-//            {
-//                if (showYesNoDialog("", "Are you sure to close all orderOld?") == DIALOG_YES)
-//                {
-//                    rcController.closeAllOrder();
-//                    init();
-//                    displayMessage("");
-//                }
-//            }
-//        }
-//    }
-    } 
-    /****************************************************************
-     * Payment panel
-    *****************************************************************/   
+   
     private class TransactionDetailPanel extends JPanel implements ActionListener
     {
         private JScrollPane     scrollPanel;
@@ -3563,14 +3309,12 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
         			order.getDiscount(),order.getGrandTotal(),tran.getType() ,tran.getCode(),tran.getMode(), tran.getStatus(),tran.getCreatedAt().toString(),user.getLine()+" "+user.getCity());
         	  
         	displayArea.setText(str);
-        	// displayArea.setText(rcController.createPaymentList());
         }
         
         public void actionPerformed(ActionEvent ae) {
             if (ae.getSource() == btnPrint)
             {
-            	
-               // String createFineName = rcController.generatePaymentReport();
+
             	String createFineName = printTotextfile(this.currTranId);
                 if( createFineName == null)
                     displayErrorMessage(rcController.getErrorMessage());
@@ -3656,8 +3400,6 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
 		       newFile = new File(fileName);
 		       newFile.getParentFile().mkdirs();
 		       try {
-		    	  // newFile.createNewFile();
-		    	//   System.out.println(line);
 				writer = new BufferedWriter(new FileWriter(newFile));
 				
 				writer.write(line);

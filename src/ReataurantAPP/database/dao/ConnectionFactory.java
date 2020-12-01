@@ -4,6 +4,9 @@
 package ReataurantAPP.database.dao;
 
 import com.mysql.cj.jdbc.Driver;
+
+import ReataurantAPP.GUI.UserInterface_GUI;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -33,5 +36,6 @@ public class ConnectionFactory {
 		}
 		
 	}
+
 
 }
