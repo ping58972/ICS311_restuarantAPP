@@ -143,9 +143,20 @@ Click on register button.
 
 #Screenshots:
 
-Form 1.png Contains a picture of the first form
+![alt text](https://github.com/ping58972/ICS311_restuarantAPP/blob/master/screenshots_images/1.PNG)
+![alt text](https://github.com/ping58972/ICS311_restuarantAPP/blob/master/screenshots_images/2.PNG)
+![alt text](https://github.com/ping58972/ICS311_restuarantAPP/blob/master/screenshots_images/3.PNG)
+![alt text](https://github.com/ping58972/ICS311_restuarantAPP/blob/master/screenshots_images/4.PNG)
+![alt text](https://github.com/ping58972/ICS311_restuarantAPP/blob/master/screenshots_images/5.PNG)
+![alt text](https://github.com/ping58972/ICS311_restuarantAPP/blob/master/screenshots_images/6.PNG)
+![alt text](https://github.com/ping58972/ICS311_restuarantAPP/blob/master/screenshots_images/7.PNG)
+![alt text](https://github.com/ping58972/ICS311_restuarantAPP/blob/master/screenshots_images/8.PNG)
+![alt text](https://github.com/ping58972/ICS311_restuarantAPP/blob/master/screenshots_images/9.PNG)
+![alt text](https://github.com/ping58972/ICS311_restuarantAPP/blob/master/screenshots_images/10.PNG)
+![alt text](https://github.com/ping58972/ICS311_restuarantAPP/blob/master/screenshots_images/11.PNG)
+![alt text](https://github.com/ping58972/ICS311_restuarantAPP/blob/master/screenshots_images/12.PNG)
+![alt text](https://github.com/ping58972/ICS311_restuarantAPP/blob/master/screenshots_images/13.PNG)
 
-Form 2.png Contains a picture of the second form
 	
 
 
