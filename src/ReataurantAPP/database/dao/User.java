@@ -12,7 +12,7 @@ public class User {
 	private int id;
 	private String fName;
 	private String lName;
-	private long phone;
+	private String phone;
 	private String email;
 	private String pwd;
 	private String user_role;
@@ -50,9 +50,9 @@ public class User {
 	 * @param gender
 	 * @param salary
 	 */
-	public User(int id, String fName, String lName, long phone, String email, String pwd, String user_role, String line,
-			String city, String province, String country, Date registeredAt, String intro, Date bdate, String gender,
-			double salary) {
+	public User(int id, String fName, String lName, String phone, String email, String pwd, String user_role,
+			String line, String city, String province, String country, Date registeredAt, String intro, Date bdate,
+			String gender, double salary) {
 		super();
 		this.id = id;
 		this.fName = fName;
@@ -110,13 +110,13 @@ public class User {
 	/**
 	 * @return the phone
 	 */
-	public long getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 	/**
 	 * @param phone the phone to set
 	 */
-	public void setPhone(long phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 	/**
@@ -284,7 +284,7 @@ public class User {
 		result = prime * result + ((intro == null) ? 0 : intro.hashCode());
 		result = prime * result + ((lName == null) ? 0 : lName.hashCode());
 		result = prime * result + ((line == null) ? 0 : line.hashCode());
-		result = prime * result + (int) (phone ^ (phone >>> 32));
+		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
 		result = prime * result + ((province == null) ? 0 : province.hashCode());
 		result = prime * result + ((pwd == null) ? 0 : pwd.hashCode());
 		result = prime * result + ((registeredAt == null) ? 0 : registeredAt.hashCode());
@@ -350,7 +350,10 @@ public class User {
 				return false;
 		} else if (!line.equals(other.line))
 			return false;
-		if (phone != other.phone)
+		if (phone == null) {
+			if (other.phone != null)
+				return false;
+		} else if (!phone.equals(other.phone))
 			return false;
 		if (province == null) {
 			if (other.province != null)
@@ -376,6 +379,8 @@ public class User {
 			return false;
 		return true;
 	}
+	
+	
 
 	
 }

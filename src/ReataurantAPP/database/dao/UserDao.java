@@ -46,7 +46,7 @@ public class UserDao implements Dao<User> {
 			if(rs.next()) {
 				user = new User(
 						rs.getInt("id"),
-						rs.getString("fName"), rs.getString("lName"),rs.getLong("phone"), rs.getString("email"),
+						rs.getString("fName"), rs.getString("lName"),rs.getString("phone"), rs.getString("email"),
 						rs.getString("pwd"), rs.getString("user_role"), rs.getString("line"),
 						rs.getString("city"),rs.getString("province"),rs.getString("country"),rs.getDate("registeredAt"), rs.getString("intro"),
 						rs.getDate("bdate"), rs.getString("gender"),rs.getDouble("salary"));
@@ -89,7 +89,7 @@ public class UserDao implements Dao<User> {
 			while(rs.next()) {
 				User user = new User(
 						rs.getInt("id"),
-						rs.getString("fName"), rs.getString("lName"),rs.getLong("phone"), rs.getString("email"),
+						rs.getString("fName"), rs.getString("lName"),rs.getString("phone"), rs.getString("email"),
 						rs.getString("pwd"), rs.getString("user_role"), rs.getString("line"),
 						rs.getString("city"),rs.getString("province"),rs.getString("country"),rs.getDate("registeredAt"), rs.getString("intro"),
 						rs.getDate("bdate"), rs.getString("gender"),rs.getDouble("salary"));
@@ -133,7 +133,7 @@ public class UserDao implements Dao<User> {
 			if(rs.next()) {
 				user = new User(
 						rs.getInt("id"),
-						rs.getString("fName"), rs.getString("lName"),rs.getLong("phone"), rs.getString("email"),
+						rs.getString("fName"), rs.getString("lName"),rs.getString("phone"), rs.getString("email"),
 						rs.getString("pwd"), rs.getString("user_role"), rs.getString("line"),
 						rs.getString("city"),rs.getString("province"),rs.getString("country"),rs.getDate("registeredAt"), rs.getString("intro"),
 						rs.getDate("bdate"), rs.getString("gender"),rs.getDouble("salary"));
@@ -176,7 +176,7 @@ public class UserDao implements Dao<User> {
 			while(rs.next()) {
 				User user = new User(
 						rs.getInt("id"),
-						rs.getString("fName"), rs.getString("lName"),rs.getLong("phone"), rs.getString("email"),
+						rs.getString("fName"), rs.getString("lName"),rs.getString("phone"), rs.getString("email"),
 						rs.getString("pwd"), rs.getString("user_role"), rs.getString("line"),
 						rs.getString("city"),rs.getString("province"),rs.getString("country"),rs.getDate("registeredAt"), rs.getString("intro"),
 						rs.getDate("bdate"), rs.getString("gender"),rs.getDouble("salary"));
@@ -221,7 +221,7 @@ public class UserDao implements Dao<User> {
 					+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);"); //15/16
 			ps.setString(1, user.getfName());
 			ps.setString(2, user.getlName());
-			ps.setLong(3, user.getPhone());
+			ps.setString(3, user.getPhone());
 			ps.setString(4,  user.getEmail());
 			ps.setString(5, user.getPwd());
 			ps.setString(6, user.getUser_role());
@@ -272,7 +272,7 @@ public class UserDao implements Dao<User> {
 					+ "country=?, registeredAt=?, intro=?, bdate=?, gender=?, salary=? where id=? ;");
 			ps.setString(1, user.getfName());
 			ps.setString(2, user.getlName());
-			ps.setLong(3, user.getPhone());
+			ps.setString(3, user.getPhone());
 			ps.setString(4,  user.getEmail());
 			ps.setString(5, user.getPwd());
 			ps.setString(6, user.getUser_role());

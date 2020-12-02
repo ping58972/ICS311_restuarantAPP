@@ -729,7 +729,7 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
             gbLayout.setConstraints(lNameF, gbc);
             this.add(lNameF);
             
-            Integer randomNum = new Random().nextInt(89999999) + 10000000;
+            Integer randomNum = new Random().nextInt(899999999) + 10000000;
             
             email = new JLabel("Email:");
             email.setPreferredSize(new Dimension(100, 30));
@@ -854,7 +854,7 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
 				infos = addressF.getText().trim().split(", ");
 
 				 
-				 User user = new User(0, fNameF.getText().trim(),lNameF.getText().trim(), Integer.valueOf(phoneF.getText().trim()),
+				 User user = new User(0, fNameF.getText().trim(),lNameF.getText().trim(), phoneF.getText().trim(),
 						  emailF.getText().trim(), pwdF.getText().trim(), "Customer",
 						 infos[0].trim(), infos[1].trim(), infos[2].trim(), infos[3].trim(), 
 						 new Date(), infos[5].trim(), ddate, infos[4].trim(), 0);
@@ -1133,7 +1133,7 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
 
 				 
 				 User user = new User(db.getUser().getId(), fNameF.getText().trim(),lNameF.getText().trim(), 
-						 Integer.valueOf(phoneF.getText().trim()),
+						 phoneF.getText().trim(),
 						  emailF.getText().trim(), pwdF.getText().trim(), db.getUser().getUser_role(),
 						 infos[0].trim(), infos[1].trim(), infos[2].trim(), infos[3].trim(), 
 						 db.getUser().getRegisteredAt(), infos[5].trim(), ddate, infos[4].trim(), 0);
@@ -2089,7 +2089,7 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
             gbLayout.setConstraints(phone, gbc);
             this.add(phone);        
             phoneF = new JTextField(20);
-            phoneF.setInputVerifier(new IntegerInputVerifier(1,99999999));
+            //phoneF.setInputVerifier(new IntegerInputVerifier(1,99999999));
             gbc.gridx = 1;
             gbc.gridy = 3;
             gbLayout.setConstraints(phoneF, gbc);
@@ -2280,7 +2280,7 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
 
 				 
 				 User user = new User(0, fNameF.getText().trim(),lNameF.getText().trim(), 
-						 Integer.valueOf(phoneF.getText().trim()),
+						 phoneF.getText().trim(),
 						  emailF.getText().trim(), pwdF.getText().trim(), roleF.getText().trim(),
 						 infos[0].trim(), infos[1].trim(), infos[2].trim(), infos[3].trim(), 
 						 new Date(), infos[5].trim(), ddate, infos[4].trim(), 0);
@@ -2310,7 +2310,7 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
 
 				 
 				 User user = new User(member.getId(), fNameF.getText().trim(),lNameF.getText().trim(), 
-						 Integer.valueOf(phoneF.getText().trim()),
+						 phoneF.getText().trim(),
 						  emailF.getText().trim(), pwdF.getText().trim(), roleF.getText().trim(),
 						 infos[0].trim(), infos[1].trim(), infos[2].trim(), infos[3].trim(), 
 						 member.getRegisteredAt(), infos[5].trim(), ddate, infos[4].trim(), 0);
