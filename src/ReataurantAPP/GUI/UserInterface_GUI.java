@@ -973,7 +973,7 @@ public class UserInterface_GUI extends JFrame implements ActionListener {
             gbLayout.setConstraints(phone, gbc);
             this.add(phone);        
             phoneF = new JTextField(20);
-            phoneF.setInputVerifier(new IntegerInputVerifier(1,99999999));
+           // phoneF.setInputVerifier(new IntegerInputVerifier(1,99999999));
             gbc.gridx = 1;
             gbc.gridy = 3;
             gbLayout.setConstraints(phoneF, gbc);
